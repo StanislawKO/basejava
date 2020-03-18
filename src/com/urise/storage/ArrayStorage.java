@@ -22,6 +22,7 @@ public class ArrayStorage {
         }
 
         boolean isResume = true;
+
         for (int i = 0; i < size; i++) {
             if (storage[i] == r) {
                 isResume = false;
@@ -37,15 +38,23 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
+        boolean isResume = false;
         Resume resume = null;
+
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid() == uuid) {
                 resume = storage[i];
-            } else {
-                System.out.println("Резюме нет в storage!");
+                isResume = true;
             }
         }
-        return resume;
+
+        if (isResume) {
+            return resume;
+        } else {
+            System.out.println("Резюме нет в storage!");
+        }
+
+        return null;
     }
 
     public void delete(String uuid) {
