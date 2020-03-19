@@ -58,24 +58,10 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
+
+        System.out.println("Резюме " + uuid + " нет в storage!");
+
         return null;
-//        boolean isResume = false;
-//        Resume resume = null;
-//
-//        for (int i = 0; i < size; i++) {
-//            if (storage[i].getUuid().equals(uuid)) {
-//                resume = storage[i];
-//                isResume = true;
-//            }
-//        }
-//
-//        if (isResume) {
-//            return resume;
-//        } else {
-//            System.out.println("Резюме " + uuid + " нет в storage!");
-//        }
-//
-//        return null;
     }
 
     public void delete(String uuid) {
