@@ -17,12 +17,12 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        boolean isResume = false;
+        boolean isResume = true;
 
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid() == resume.getUuid()) {
                 storage[i] = resume;
-                isResume = true;
+                isResume = false;
             }
         }
 
