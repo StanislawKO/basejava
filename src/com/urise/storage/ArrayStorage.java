@@ -80,7 +80,7 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         for (int i = 0; i < size; i++) {                        //поиск удаляемого элемента
-            if (storage[i].getUuid() == uuid) {
+            if (storage[i].getUuid().equals(uuid)) {
                 storage[i] = storage[size - 1];
                 storage[size - 1] = null;
                 size--;                                     //уменьшение количества резюме
