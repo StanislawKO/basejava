@@ -16,6 +16,30 @@ public class ArrayStorage {
         size = 0;
     }
 
+    public void update(Resume resume) {
+//        for (int i = 0; i < size; i++) {
+//            if (storage[i].getUuid() == resume.getUuid()) {
+//                storage[i] = resume;
+//                return;
+//            } else {
+//                System.out.println("Резюме нет в storage!");
+//            }
+//        }
+
+        boolean isResume = false;
+
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid() == resume.getUuid()) {
+                storage[i] = resume;
+                isResume = true;
+            }
+        }
+
+        if (isResume) {
+            System.out.println("Резюме " + resume + " нет в storage!");
+        }
+    }
+
     public void save(Resume r) {
         if (size > 10000) {
             System.out.println("Переполнение размера storage!");
@@ -51,7 +75,7 @@ public class ArrayStorage {
         if (isResume) {
             return resume;
         } else {
-            System.out.println("Резюме нет в storage!");
+            System.out.println("Резюме " + uuid + " нет в storage!");
         }
 
         return null;
@@ -79,9 +103,5 @@ public class ArrayStorage {
 
     public int size() {
         return size;
-    }
-
-    public void update(Resume resume) {
-
     }
 }
