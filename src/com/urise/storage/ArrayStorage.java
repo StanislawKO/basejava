@@ -17,15 +17,6 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-//        for (int i = 0; i < size; i++) {
-//            if (storage[i].getUuid() == resume.getUuid()) {
-//                storage[i] = resume;
-//                return;
-//            } else {
-//                System.out.println("Резюме нет в storage!");
-//            }
-//        }
-
         boolean isResume = false;
 
         for (int i = 0; i < size; i++) {
