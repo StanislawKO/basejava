@@ -31,7 +31,7 @@ public class ArrayStorage {
         }
     }
 
-    public void save(Resume r) {
+    public void save(Resume resume) {
         if (size > 10000) {
             System.out.println("Переполнение размера storage!");
         }
@@ -39,16 +39,16 @@ public class ArrayStorage {
         boolean isResume = true;
 
         for (int i = 0; i < size; i++) {
-            if (storage[i] == r) {
+            if (storage[i] == resume) {
                 isResume = false;
             }
         }
 
         if (isResume) {
-            storage[size] = r;
+            storage[size] = resume;
             size++;
         } else {
-            System.out.println("Резюме есть в storage!");
+            System.out.println("Резюме " + resume + " есть в storage!");
         }
     }
 
