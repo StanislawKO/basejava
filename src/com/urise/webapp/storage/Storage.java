@@ -1,6 +1,6 @@
-package com.urise.storage;
+package com.urise.webapp.storage;
 
-import com.urise.model.Resume;
+import com.urise.webapp.model.Resume;
 
 
 public interface Storage {
