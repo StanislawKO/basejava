@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
     @Override
-    protected void insertByResume(Resume resume) {
+    protected void insertByResume(Resume resume, int index) {
         storage[size] = resume;
     }
 
