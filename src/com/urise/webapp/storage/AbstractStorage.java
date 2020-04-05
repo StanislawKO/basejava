@@ -7,46 +7,48 @@ import com.urise.webapp.model.Resume;
 public abstract class AbstractStorage implements Storage {
 
     public void update(Resume resume) {
-        int index = existStorage(resume.getUuid());
+        Object index = existStorage(resume.getUuid());
         doUpdate(resume, index);
     }
 
     public void save(Resume resume) {
-        int index = notExistStorage(resume.getUuid());
+        Object index = notExistStorage(resume.getUuid());
         doSave(resume, index);
     }
 
     public Resume get(String uuid) {
-        int index = existStorage(uuid);
+        Object index = existStorage(uuid);
         return doGet(index);
     }
 
     public void delete(String uuid) {
-        int index = existStorage(uuid);
+        Object index = existStorage(uuid);
         doDelete(index);
     }
 
-    protected abstract void doUpdate(Resume resume, int index);
+    protected abstract void doUpdate(Resume resume, Object index);
 
-    protected abstract void doSave(Resume resume, int index);
+    protected abstract void doSave(Resume resume, Object index);
 
-    protected abstract Resume doGet(int index);
+    protected abstract Resume doGet(Object index);
 
-    protected abstract void doDelete(int index);
+    protected abstract void doDelete(Object index);
 
-    protected abstract int getIndex(String uuid);
+    protected abstract Object getIndex(String uuid);
 
-    private int existStorage(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
+    protected abstract boolean isExist(Object index);
+
+    private Object existStorage(String uuid) {
+        Object index = getIndex(uuid);
+        if (!isExist(index)) {
             throw new NotExistStorageException(uuid);
         }
         return index;
     }
 
-    private int notExistStorage(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
+    private Object notExistStorage(String uuid) {
+        Object index = getIndex(uuid);
+        if (isExist(index)) {
             throw new ExistStorageException(uuid);
         }
         return index;
