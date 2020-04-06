@@ -7,23 +7,23 @@ import com.urise.webapp.model.Resume;
 public abstract class AbstractStorage implements Storage {
 
     public void update(Resume resume) {
-        Object index = existStorage(resume.getUuid());
-        doUpdate(resume, index);
+        Object searchKey = existKey(resume.getUuid());
+        doUpdate(resume, searchKey);
     }
 
     public void save(Resume resume) {
-        Object index = notExistStorage(resume.getUuid());
-        doSave(resume, index);
+        Object searchKey = notExistKey(resume.getUuid());
+        doSave(resume, searchKey);
     }
 
     public Resume get(String uuid) {
-        Object index = existStorage(uuid);
-        return doGet(index);
+        Object searchKey = existKey(uuid);
+        return doGet(searchKey);
     }
 
     public void delete(String uuid) {
-        Object index = existStorage(uuid);
-        doDelete(index);
+        Object searchKey = existKey(uuid);
+        doDelete(searchKey);
     }
 
     protected abstract void doUpdate(Resume resume, Object index);
@@ -34,23 +34,23 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void doDelete(Object index);
 
-    protected abstract Object getIndex(String uuid);
+    protected abstract Object searchKey(String uuid);
 
     protected abstract boolean isExist(Object index);
 
-    private Object existStorage(String uuid) {
-        Object index = getIndex(uuid);
-        if (!isExist(index)) {
+    private Object existKey(String uuid) {
+        Object searchKey = searchKey(uuid);
+        if (!isExist(searchKey)) {
             throw new NotExistStorageException(uuid);
         }
-        return index;
+        return searchKey;
     }
 
-    private Object notExistStorage(String uuid) {
-        Object index = getIndex(uuid);
-        if (isExist(index)) {
+    private Object notExistKey(String uuid) {
+        Object searchKey = searchKey(uuid);
+        if (isExist(searchKey)) {
             throw new ExistStorageException(uuid);
         }
-        return index;
+        return searchKey;
     }
 }
