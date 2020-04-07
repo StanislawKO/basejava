@@ -10,6 +10,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
 
+    protected abstract Integer getSearchKey(String uuid);
+
+    protected abstract void insertElement(Resume resume, int index);
+
+    protected abstract void fillDeletedElement(int index);
+
     @Override
     protected boolean isExist(Object index) {
         return (Integer) index >= 0;
@@ -57,10 +63,4 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     public int size() {
         return size;
     }
-
-    protected abstract Integer searchKey(String uuid);
-
-    protected abstract void insertElement(Resume resume, int index);
-
-    protected abstract void fillDeletedElement(int index);
 }
