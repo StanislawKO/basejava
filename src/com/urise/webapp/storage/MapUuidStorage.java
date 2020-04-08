@@ -2,15 +2,14 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-public class MapStorage extends AbstractStorage {
-    private Map<String, Resume> map = new TreeMap<>();
+public class MapUuidStorage extends AbstractStorage {
+    private Map<String, Resume> map = new HashMap<>();
 
     @Override
-    protected boolean isExist(Object index) {
-        return map.containsKey((String) index);
+    protected boolean isExist(Object uuid) {
+        return map.containsKey((String) uuid);
     }
 
     @Override
@@ -44,9 +43,14 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public Resume[] getAll() {
-        return map.values().toArray(new Resume[map.size()]);
+    protected List<Resume> doGetAll() {
+        return new ArrayList<>(map.values());
     }
+
+//    @Override
+//    public List<Resume> getAllSorted() {
+//        return map.values().toArray(new Resume[map.size()]);
+//    }
 
     @Override
     public int size() {
