@@ -20,6 +20,7 @@ public class TestSingleton {
         Singleton singleton = Singleton.valueOf("SINGLETON");
         System.out.println(singleton.name());
         System.out.println(singleton.ordinal());
+
         for(SectionType type: SectionType.values()) {
             System.out.println(type.getTitle());
         }
