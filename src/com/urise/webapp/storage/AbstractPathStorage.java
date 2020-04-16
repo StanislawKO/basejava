@@ -96,10 +96,10 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     public int size() {
-        String[] list = directory.list();
-        if (list == null) {
-            throw new StorageException("Ditectory read error", null);
+        try {
+            return (int) Files.list(directory).count();
+        } catch (IOException e) {
+            throw new StorageException("Path delete error", null);
         }
-        return list.length;
     }
 }

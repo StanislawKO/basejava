@@ -17,7 +17,8 @@ public class MainFile {
         }
 
 //        File dir = new File("D:\\Java\\basejava\\src\\com\\urise\\webapp");
-        File dir = new File(".\\src\\com\\urise\\webapp");
+//        File dir = new File(".\\src\\com\\urise\\webapp");
+        File dir = new File(".\\src\\com\\urise");
         System.out.println(dir.isDirectory());
         String[] list = dir.list();
         if (list != null) {
@@ -26,25 +27,25 @@ public class MainFile {
             }
         }
 
-        try (FileInputStream fis = new FileInputStream(filePath)){
+        try (FileInputStream fis = new FileInputStream(filePath)) {
             System.out.println(fis.read());
         } catch (IOException e) {
             throw new RuntimeException();
         }
 
-        printDirectoryDeeply(dir);
+        printDirectoryDeeply(dir, "");
     }
 
-    public static void printDirectoryDeeply(File dir) {
+    public static void printDirectoryDeeply(File dir, String offset) {
         File[] files = dir.listFiles();
 
         if (files != null) {
-            for (File file: files) {
+            for (File file : files) {
                 if (file.isFile()) {
-                    System.out.println("    File: " + file.getName());
+                    System.out.println(offset + "F: " + file.getName());
                 } else {
-                    System.out.println("Directory: " + file.getName());
-                    printDirectoryDeeply(file);
+                    System.out.println(offset + "D: " + file.getName());
+                    printDirectoryDeeply(file, offset + "  ");
                 }
             }
         }
